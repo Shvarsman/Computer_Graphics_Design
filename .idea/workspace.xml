@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb394bc-21a6-49d3-b750-56c8b732b8ac" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/PKG.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab_2.py" afterDir="false" />
+    <list default="true" id="3fb394bc-21a6-49d3-b750-56c8b732b8ac" name="Changes" comment="add lab_1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lab_1_color_converter/lab_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/lab_2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Shvarsman"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Shvarsman/PKG.git",
+    "accountId": "87e23f2d-f0cb-413c-8bc7-70a2bf3d212c"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 7
 }]]></component>
@@ -42,11 +49,17 @@
   "keyToString": {
     "Python.lab_1(Color converter).executor": "Run",
     "Python.lab_1(Color_converter).executor": "Run",
+    "Python.lab_2.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Администратор\PycharmProjects\PKG\Lab_1_color_converter" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="lab_1" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="PKG" />
@@ -61,7 +74,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Администратор\PycharmProjects\PKG\lab_1.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Администратор\PycharmProjects\PKG\Lab_1_color_converter\lab_1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -87,6 +100,43 @@
       <option name="presentableId" value="Default" />
       <updated>1728246043179</updated>
     </task>
+    <task id="LOCAL-00001" summary="add lab_1">
+      <option name="closed" value="true" />
+      <created>1728247159471</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728247159471</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add lab_1">
+      <option name="closed" value="true" />
+      <created>1728247185443</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728247185443</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add lab_1">
+      <option name="closed" value="true" />
+      <created>1728247208124</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728247208124</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add lab_1">
+      <option name="closed" value="true" />
+      <created>1728247214519</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728247214519</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add lab_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="add lab_1" />
   </component>
 </project>
