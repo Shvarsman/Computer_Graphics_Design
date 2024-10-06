@@ -15,16 +15,6 @@ This is a simple color converter application built using Python's Tkinter librar
 - Python 3.x
 - Tkinter (usually included with Python installations)
 
-## Installation
-
-1. Clone the repository or download the source code.
-2. Ensure you have Python installed on your computer.
-3. Run the application using the command:
-
-   ```bash
-   python color_converter.py
-   ```
-
 ## How to Use
 
 1. **RGB Input**: Enter RGB values in the respective text boxes or adjust the sliders. The color display will update accordingly.
