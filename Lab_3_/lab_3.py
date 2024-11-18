@@ -13,40 +13,6 @@ def sharpness(img):
     img = cv2.filter2D(img, -1, kernel)
     return img
 
-def global_thresholdingOtsu(img):
-    blur = cv2.GaussianBlur(img,(5,5),0)
-
-    hist = cv2.calcHist([blur],[0],None,[256],[0,256])
-    hist_norm = hist.ravel()/hist.sum()
-    Q = hist_norm.cumsum()
-
-    bins = np.arange(256)
-
-    fn_min = np.inf
-    thresh = -1
-
-    for i in range(1,256):
-        p1,p2 = np.hsplit(hist_norm,[i])
-        q1,q2 = Q[i],Q[255]-Q[i]
-        if q1 < 1.e-6 or q2 < 1.e-6:
-            continue
-        b1,b2 = np.hsplit(bins,[i])
-
-        m1,m2 = np.sum(p1*b1)/q1, np.sum(p2*b2)/q2
-        v1,v2 = np.sum(((b1-m1)**2)*p1)/q1,np.sum(((b2-m2)**2)*p2)/q2
-
-        fn = v1*q1 + v2*q2
-        if fn < fn_min:
-            fn_min = fn
-    thresh = i
-
-    return thresh
-
-def global_thresholding_Otsu(img):
-    blur = cv2.GaussianBlur(img,(5,5),0)
-    ret3,th3 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-    return th3
-
 def adaptive1(img):
     mean_img = Img.fromarray(img).convert('L')
     arr2 = cv2.adaptiveThreshold(np.array(mean_img), 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 5, 20)
@@ -120,15 +86,6 @@ def adaptive_thresholding_2():
     final6 = ImgTk.PhotoImage(sharpened_image.resize((720,480)))
     image = canvas.create_image(0, 0, anchor='nw',image=final6) 
     
-def otsu():
-    img = cv2.imread(filepath)
-    gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    new_img = global_thresholding_Otsu(gray_img)
-    new_image = Img.fromarray(new_img)
-    global final7
-    final7 = ImgTk.PhotoImage(new_image.resize((720,480)))
-    image = canvas.create_image(0, 0, anchor='nw',image=final7)
-    
 root = Tk()
 root.title("Digital image processing")
 root.geometry('1000x600')
@@ -149,7 +106,6 @@ global_thresholding_1_button = Button(root, text="Global thresholding 1", comman
 global_thresholding_2_button = Button(root, text="Global thresholding 2", command=global_thresholding_2, width=15, bg='#5f615f', font=('Times New Roman', 12, 'bold'), foreground='#FFFFFF')
 adaptive_thresholding_1_button = Button(root, text="Adaptive thresholding 1", command=adaptive_thresholding_1, width=15, bg='#5f615f', font=('Times New Roman', 12, 'bold'), foreground='#FFFFFF')
 adaptive_thresholding_2_button = Button(root, text="Adaptive thresholding 2", command=adaptive_thresholding_2, width=15, bg='#5f615f', font=('Times New Roman', 12, 'bold'), foreground='#FFFFFF')
-otsu_button = Button(root, text="Otsu", command=otsu, width=15, bg='#5f615f', font=('Times New Roman', 12, 'bold'), foreground='#FFFFFF')
 
 original_button.place(x=25, y=95)
 sharpening_filter_button.place(x=25, y=170)
@@ -157,7 +113,6 @@ global_thresholding_1_button.place(x=25, y=245)
 global_thresholding_2_button.place(x=25, y=310)
 adaptive_thresholding_1_button.place(x=25, y=395)
 adaptive_thresholding_2_button.place(x=25, y=470)
-otsu_button.place(x=25, y=545)
 
 style = ttk.Style()
 style.theme_use("default")
