@@ -1,12 +1,22 @@
 import tkinter as tk
-from tkinter import ttk, filedialog
+from tkinter import ttk, filedialog, messagebox
 import time
 
+convex_polygon = [
+    (-5, -5),
+    (5, -5),
+    (7, 2),
+    (3, 7),
+    (-3, 6),
+    (-7, 2)
+]
+
 class LineClippingApp:
+
     def __init__(self, root):
         self.root = root
         self.root.title("Алгоритмы отсечения отрезков")
-        self.grid_step = 40
+        self.grid_step = 15
         self.grid_range = 15
         self.segments = []
         self.clip_window = []
@@ -67,10 +77,16 @@ class LineClippingApp:
         canvas_x, canvas_y = self.to_canvas_coordinates(x, y)
         self.canvas.create_oval(canvas_x - 2, canvas_y - 2, canvas_x + 2, canvas_y + 2, fill=color, outline=color)
 
-    def draw_segment(self, x1, y1, x2, y2, color="black"):
+    def draw_polygon(self, polygon, color="red"):
+        for i in range(len(polygon)):
+            x1, y1 = polygon[i]
+            x2, y2 = polygon[(i + 1) % len(polygon)]
+            self.draw_segment(x1, y1, x2, y2, color=color, tag="polygon")
+
+    def draw_segment(self, x1, y1, x2, y2, color="black", tag=None):
         canvas_x1, canvas_y1 = self.to_canvas_coordinates(x1, y1)
         canvas_x2, canvas_y2 = self.to_canvas_coordinates(x2, y2)
-        self.canvas.create_line(canvas_x1, canvas_y1, canvas_x2, canvas_y2, fill=color, width=2)
+        self.canvas.create_line(canvas_x1, canvas_y1, canvas_x2, canvas_y2, fill=color, width=2, tags=tag)
 
     def liang_barsky(self, x1, y1, x2, y2, clip_window):
         dx, dy = x2 - x1, y2 - y1
@@ -134,22 +150,38 @@ class LineClippingApp:
             return
         with open(file_path, "r") as f:
             lines = f.readlines()
+
         n = int(lines[0])
         self.segments = [tuple(map(int, line.split())) for line in lines[1:n + 1]]
-        self.clip_window = tuple(map(int, lines[n + 1].split()))
+
+        if self.algorithm.get() == "liang_barsky":
+            if len(lines) > n + 1:
+                self.clip_window = tuple(map(int, lines[n + 1].split()))
+            else:
+                messagebox.showerror("Ошибка", "В файле отсутствует окно отсечения для Liang-Barsky!")
+                return
+        elif self.algorithm.get() == "polygon_clipping":
+            self.clip_window = []
+
         self.draw_grid()
         for x1, y1, x2, y2 in self.segments:
             self.draw_segment(x1, y1, x2, y2, color="blue")
-        if len(self.clip_window) == 4:
+
+        if self.algorithm.get() == "liang_barsky" and len(self.clip_window) == 4:
             x_min, y_min, x_max, y_max = self.clip_window
             self.draw_segment(x_min, y_min, x_max, y_min, color="red")
             self.draw_segment(x_max, y_min, x_max, y_max, color="red")
             self.draw_segment(x_max, y_max, x_min, y_max, color="red")
             self.draw_segment(x_min, y_max, x_min, y_min, color="red")
 
+        elif self.algorithm.get() == "polygon_clipping":
+            self.draw_polygon(convex_polygon, color="red")
+
     def run_algorithm(self):
-        self.draw_grid()
+        self.draw_grid()  # Redraw the grid
+        self.canvas.delete("polygon")  # Clear any existing polygon drawings
         start_time = time.time()
+
         if self.algorithm.get() == "liang_barsky":
             for x1, y1, x2, y2 in self.segments:
                 result = self.liang_barsky(x1, y1, x2, y2, self.clip_window)
@@ -157,25 +189,21 @@ class LineClippingApp:
                     nx1, ny1, nx2, ny2 = result
                     self.draw_segment(nx1, ny1, nx2, ny2, color="green")
         elif self.algorithm.get() == "polygon_clipping":
-            convex_polygon = [
-                (-5, -5),
-                (5, -5),
-                (7, 2),
-                (3, 7),
-                (-3, 6),
-                (-7, 2)
-            ]
             for x1, y1, x2, y2 in self.segments:
                 result = self.polygon_clipping(x1, y1, x2, y2, convex_polygon)
                 if result:
                     nx1, ny1, nx2, ny2 = result
                     self.draw_segment(nx1, ny1, nx2, ny2, color="green")
+
         elapsed_time = time.time() - start_time
         self.time_label.config(text=f"Время выполнения: {elapsed_time:.6f} секунд")
 
     def update_grid_step(self, val):
         self.grid_step = int(val)
         self.draw_grid()
+        self.run_algorithm()
+
+
 
 if __name__ == "__main__":
     root = tk.Tk()
