@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 import numpy as np
 
-# ------------------------ Функции для создания модели буквы "Ш" -------------------------
 def create_letter_sh():
     vertices = np.array([
         [0, 0, 0], [0, 0, 5], [0, 1, 5], [0, 1, 0],
